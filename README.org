@@ -238,6 +238,34 @@ gpasswd -a <username> input
 owlman install xf86-input-mtrack
 #+end_src
 
+*** 20. Backlight
+With an intel graphics card, the backlight can be controlled with `xbacklight`:
+#+begin_src sh
+sudo pacman -S xorg-xbacklight
+#+end_src
+To specify the specific backlight device, create a `/etc/X11/xorg.conf.d./20-intel.conf` file:
+#+begin_src sh
+Section "Device"
+    Identifier  "Card0"
+    Driver      "intel"
+    Option      "Backlight"  "intel_backlight"
+EndSection
+#+end_src
+Using `xbindkeys` to bind the backlight keys:
+#+begin_src sh
+sudo pacman -S xbindkeys
+touch ~/.xbindkeysrc
+echo "xbindkeys" >> ~/.xinitrc
+#+end_src
+Add the bindings to the `.xbindkeysrc` file:
+#+begin_src sh
+"xbacklight -inc 10"
+    XF86MonBrightnessUp
+
+"xbacklight -dec 10"
+    XF86MonBrightnessDown
+#+end_src
+
 ** Additional Links
 There are other folks who have blogged about this process since I started this:
 - [[http://frankshin.com/installing-archlinux-on-macbook-air-2013/][Installing Archlinux on Macbook Air 2013 - Frank Shin]]
