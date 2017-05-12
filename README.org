@@ -266,6 +266,24 @@ Add the bindings to the `.xbindkeysrc` file:
     XF86MonBrightnessDown
 #+end_src
 
+*** 21. Audio
+If the default audio device is hdmi instead of the normal output, add these lines to `~/.asoundrc`
+#+begin_src
+defaults.ctl.card 1;
+defaults.pcm.card 1;
+#+end_src
+and bind the volume keys in `.xbindkeysrc` with
+#+begin_src
+"amixer set Master 5%+"
+    XF86AudioRaiseVolume
+	
+"amixer set Master 5%-"
+    XF86AudioLowerVolume
+
+"amixer set Master toggle"
+    XF86AudioMute
+#+end_src
+
 ** Additional Links
 There are other folks who have blogged about this process since I started this:
 - [[http://frankshin.com/installing-archlinux-on-macbook-air-2013/][Installing Archlinux on Macbook Air 2013 - Frank Shin]]
