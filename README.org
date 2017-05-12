@@ -205,14 +205,15 @@ sudo pacman -S dialog
 sudo wifi-menu -o
 #+end_src
 *** 17. Access common keys
-**** Tilde key
+**** Keyboard setup
+Stop requiring the fn key to trigger F1-F12. Also swap the option and command (alt and super) keys.
 The tilde key does not work on the keyboard out of the box. There
 are several solutions listed [[https://wiki.archlinux.org/index.php/Apple_Keyboard][here]] but this one worked for me:
 #+begin_src sh
 sudo nano /etc/modprobe.d/hid_apple.conf
 #+end_src
 #+begin_example
-options hid_apple iso_layout=0
+options hid_apple iso_layout=0 fnmode=2 swap_opt_cmd=1
 #+end_example
 **** Insert and <F1..12> keys
 The <insert> key can be reproduced with fn+<Enter>. So to paste in an xterm
@@ -229,7 +230,14 @@ documented in the ArchWiki:
   modes in userspace, kernel and hardware, *available in the official
   repositories*. ([[https://wiki.archlinux.org/index.php/Powertop][ArchWiki]])
 - [[http://linrunner.de/en/tlp/tlp.html][TLP]]: a collection of power-saving scripts *available in the official repositories*.
-  ([[https://wiki.archlinux.org/index.php/TLP][ArchWiki]])
+  ([[https://wiki.archlinux.org/index.php/TLP][ArchWiki]])\
+  
+*** 19. Trackpad
+#+begin_src sh
+gpasswd -a <username> input
+owlman install xf86-input-mtrack
+#+end_src
+
 ** Additional Links
 There are other folks who have blogged about this process since I started this:
 - [[http://frankshin.com/installing-archlinux-on-macbook-air-2013/][Installing Archlinux on Macbook Air 2013 - Frank Shin]]
