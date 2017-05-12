@@ -196,12 +196,12 @@ modprobe wl
 is a service that recompiles external modules after every kernel
 upgrade.
 #+begin_src sh
-sudo pacman -S dkms
+sudo pacman -S linux-headers dkms 
 sudo systemctl enable dkms.service
 #+end_src
 **** Select network
 #+begin_src sh
-sudo pacman -S dialog
+sudo pacman -S wpa_supplicant dialog
 sudo wifi-menu -o
 #+end_src
 *** 17. Access common keys
