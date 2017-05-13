@@ -310,6 +310,20 @@ HandlePowerKey=ignore
 #+end_src
 will stop the button from having any effect while the system is on.
 
+*** 24. Keyboard Backlight
+Installing kbdlight:
+#+begin_src sh
+owlman install kdblight
+#+end_src
+will provide a way to bind keys that change the keyboard brightness in `~/.xbindkeysrc`:
+#+begin_src
+"kbdlight up 25"
+    XF86KbdBrightnessUp
+
+"kbdlight down 25"
+    XF86KbdBrightnessDown
+#+end_src
+
 ** Additional Links
 There are other folks who have blogged about this process since I started this:
 - [[http://frankshin.com/installing-archlinux-on-macbook-air-2013/][Installing Archlinux on Macbook Air 2013 - Frank Shin]]
