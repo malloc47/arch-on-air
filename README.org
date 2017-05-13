@@ -284,6 +284,32 @@ and bind the volume keys in `.xbindkeysrc` with
     XF86AudioMute
 #+end_src
 
+*** 22. Suspend
+Bugs with out suspend is handled necessitates disabling USB-related wakeup and lid-related wakeup. Adding a service that disables these two wakeup approaches can be done by creating a systemd service in a `/etc/systemd/system/fix-suspend.service` file:
+#+begin_src
+[Unit]
+Description=fix-suspend
+
+[Service]
+ExecStart=/bin/bash -c "echo XHC1 >> /proc/acpi/wakeup; echo LID0 >> /proc/acpi/wakeup"
+
+[Install]
+WantedBy=multi-user.target
+#+end_src
+To use and activate the service:
+#+begin_src
+sudo systemctl daemon-reload
+sudo systemctl start fix-suspend
+sudo systemctl enable fix-suspend
+#+end_src
+
+*** 23. Power button
+Annoyingly, the power button immediately shuts the system down with no other warning. Editing `/etc/systemd/logind.conf` with
+#+begin_src
+HandlePowerKey=ignore
+#+end_src
+will stop the button from having any effect while the system is on.
+
 ** Additional Links
 There are other folks who have blogged about this process since I started this:
 - [[http://frankshin.com/installing-archlinux-on-macbook-air-2013/][Installing Archlinux on Macbook Air 2013 - Frank Shin]]
